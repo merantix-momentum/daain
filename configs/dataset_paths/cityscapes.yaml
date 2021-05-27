@@ -1,0 +1,12 @@
+# @package _group_
+images:
+  train: "leftImg8bit_trainvaltest/leftImg8bit/train"
+  val: "leftImg8bit_trainvaltest/leftImg8bit/val"
+  test: "leftImg8bit_trainvaltest/leftImg8bit/test"
+  #inference: "cityscapes_videos/leftImg8bit/demoVideo/"
+targets:
+  train: "gtFine_trainvaltest/gtFine/train"
+  val: "gtFine_trainvaltest/gtFine/val"
+  test: "gtFine_trainvaltest/gtFine/test"
+num_classes: 19 # TODO refactor this to a fully fledged dataset groups
+  #inference: ""

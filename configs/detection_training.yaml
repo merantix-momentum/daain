@@ -1,0 +1,87 @@
+defaults:
+  - backbone: esp_net
+  - paths
+
+random_seed: 42
+device: cuda
+
+trainer:
+  force: False
+  lazy_training: True    # the opposite of `fast_dev_run`, if checkpoint is there, it will be loaded. works only if
+                         # checkpoint dir is fixed
+  data_loader:
+    batch_size: 16      # adapt this according to the mask size
+    num_workers: 4
+  trainer:
+    accumulate_grad_batches: 4
+    enable_early_stopping: True
+    fast_dev_run: False
+    gradient_clip_val: 0.5 # against training instabilities
+    max_epochs: 300
+    progress_bar_refresh_rate: 10 # the logs just get too messy otherwise if you train more than one model
+    track_grad_norm: -1
+  optimizer:
+    name: Adam
+    kwargs:
+      learning_rate: 2e-4
+      betas: (0.8, 0.8)
+      eps: 1e-04
+      weight_decay: 1e-5
+
+dataset_descriptions:
+  - dataset: CityScapeDataset # TODO rename this to Cityscapes to be more consistent, but that would require more
+                              # changes at more places...
+    normalize: False
+    split: train
+    transforms:               # note that these transformations are currently being ignored,
+                              # check perturbed_dataset.py#create_preprocessing_pipeline for more information
+      Resize:
+        size: 512
+    attacks: []
+  - dataset: CityScapeDataset
+    normalize: False
+    split: test
+    transforms:               # note that these transformations are currently being ignored,
+                              # check perturbed_dataset.py#create_preprocessing_pipeline for more information
+      Resize:
+        size: 512
+    attacks:
+      - ColorJitter
+      - Fog
+      - Frost
+      - VerticalFlip
+      - FGSM_Iter_Target_Person
+      - FGSM_Iter_noTarget
+      - FGSM_noIter_Target_Road
+      - Gduap_attack
+dataset_assignments:
+  train: unperturbed
+  test: unperturbed
+  out_of_distributions:
+    - ColorJitter
+    - Fog
+    - Frost
+    - VerticalFlip
+  attacks:
+    - FGSM_Iter_Target_Person
+    - FGSM_Iter_noTarget
+    - FGSM_noIter_Target_Road
+    - Gduap_attack
+
+normalising_flow:
+  coupling_block_type: GLOW_LINEAR
+  num_coupling_blocks: 16
+mask:
+  mask_name: full_dist_64
+  min_distance: 64
+  mask_type: raw
+
+classifier:
+  type: HistogramBasedDistance
+  kwargs:
+      n_bins: 40
+      contamination: 0.001
+
+hydra:
+  run:
+    dir: ${paths.hydra_output}/${now:%Y-%m-%d}/${now:%H-%M-%S}

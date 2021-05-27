@@ -1,0 +1,14 @@
+gcsfs
+git+https://github.com/VLL-HD/FrEIA.git
+hydra-core==1.0.4
+matplotlib
+numpy
+pandas
+pyod
+scikit-learn
+scipy 
+seaborn
+torch==1.7.1+cu110
+torchvision==0.8.2+cu110
+pytorch_lightning
+zarr

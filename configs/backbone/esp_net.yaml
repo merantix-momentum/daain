@@ -1,0 +1,5 @@
+# @package _group_
+model:
+  p: 2                # depth factor
+  q: 8                # depth factor
+  num_classes: 19

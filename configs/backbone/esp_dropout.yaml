@@ -1,0 +1,29 @@
+# @package _group_
+trainer:
+  accumulate_grad_batches: 4
+  batch_size: 6
+  dataset:
+    name: cityscapes
+    transformations:
+      - name: Resize
+        kwargs:
+          size: 512
+  enable_early_stopping: True
+  fast_dev_run: False
+  learning_rate: 5e-4
+  max_epochs: 300
+  num_workers: 4
+  random_seed: 42
+  step_loss: 100                 # when the loss should be adapted
+  use_cuda: True
+  pretrained: True   # determines if the weights from the non-dropout model should be used
+
+model:
+  p: 2                # depth factor
+  q: 8                # depth factor
+  dropout_rate: 0.2   # the model is quite small, everything larger than that is probably not going to work
+  num_classes: 19
+  dropout_placements: REGULAR # either "regular" or "custom".
+    # - "regular" referring to a regular placement (after every weight layer)
+  # - "custom" referring to custom placements (after some layers)
+

@@ -1,0 +1,9 @@
+# @package _group_
+images:
+  train: "seg/images/train"
+  test: "seg/images/test"
+  val: "seg/images/val"
+targets:
+  train: "seg/labels/train"
+  val: "seg/labels/val"
+  test: ""

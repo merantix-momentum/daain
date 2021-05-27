@@ -1,0 +1,69 @@
+defaults:
+  - activation_spaces: esp_net_256_512
+  - backbone: esp_net
+  - paths
+
+device: cuda
+force: false
+random_seed: 42
+num_classes: 19
+dataset_descriptions:
+  - dataset: CityScapeDataset # TODO rename this to Cityscapes to be more consistent, but that would require more
+                              # changes at more places...
+    normalize: False
+    split: train
+    transforms:
+      Resize:
+        size:
+          - 256
+          - 512
+    attacks: []
+  - dataset: CityScapeDataset
+    normalize: False
+    split: test
+    transforms:
+      Resize:
+        size:
+          - 256
+          - 512
+    attacks:
+      - ColorJitter
+      - Fog
+      - Frost
+      - VerticalFlip
+      - FGSM_Iter_Target_Person
+      - FGSM_Iter_noTarget
+      - FGSM_noIter_Target_Road
+      - Gduap_attack
+masks:
+  - mask_name: full_dist_128
+    min_distance: 128
+    recording_type: post
+    rejection_boundaries: null
+  - mask_name: full_dist_64
+    min_distance: 64
+    recording_type: post
+    rejection_boundaries: null
+  - mask_name: full_dist_32
+    min_distance: 32
+    recording_type: post
+    rejection_boundaries: null
+  - mask_name: pre_batch_norm_64
+    min_distance: 64
+    recording_type: pre
+    rejection_boundaries: pre_batch_norm
+  - mask_name: pre_batch_norm_32
+    min_distance: 32
+    recording_type: pre
+    rejection_boundaries: pre_batch_norm
+  - mask_name: post_conv_64
+    min_distance: 64
+    recording_type: post
+    rejection_boundaries: post_conv
+  - mask_name: post_conv_32
+    min_distance: 32
+    recording_type: post
+    rejection_boundaries: post_conv
+hydra:
+  run:
+    dir: ${paths.hydra_output}/${now:%Y-%m-%d}/${now:%H-%M-%S}

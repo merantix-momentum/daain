@@ -1,0 +1,16 @@
+# @package _group_
+paths:
+  root: "/home/sam/merantix_data"            # TODO replace this
+  derived: "${paths.root}/derived"
+  datasets: "${paths.root}/datasets"
+  plots: "${paths.derived}/plots"
+  activations: "${paths.derived}/activations"
+  model_checkpoints: "${paths.derived}/model_checkpoints"   # left because I didn't have the time to check all refactoring
+  training_logs: "${paths.derived}/training_logs"
+  hydra_output: "${paths.derived}/hydra_output"
+  model_weights: "${paths.root}/model_weights" # the espnet weights
+  run_results: "${paths.derived}/run_results"
+  activation_path_template: "${paths.derived}/activations/{data_split}/CustomESPNet/{dataset}.zarr"
+  attacks_path_template: "${paths.derived}/attacks/{data_split}/CustomESPNet/{dataset}"
+  model_checkpoints_template: "${paths.derived}/model_weights/{experiment_id}"
+

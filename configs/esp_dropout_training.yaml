@@ -1,0 +1,10 @@
+defaults:
+  - backbone: esp_dropout
+  - paths
+  #- dataset: cityscapes
+  #- dataset_paths: ${defaults.0.backbone.trainer.dataset.name} # TODO find a better way
+  - dataset_paths: cityscapes # sadly you have to adjust this for now in the `backbone` as well
+
+hydra:
+  run:
+    dir: ${paths.hydra_output}/${now:%Y-%m-%d}/${now:%H-%M-%S}

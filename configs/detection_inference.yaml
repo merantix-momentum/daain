@@ -1,0 +1,39 @@
+defaults:
+  - backbone: esp_net
+  - paths
+
+random_seed: 42
+device: cuda
+
+data:
+  dataset: CityScapeDataset
+  normalize: False
+  split: test
+  transforms:
+    Resize:
+      size:
+        - 256
+        - 512
+  attacks:
+    - ColorJitter
+    - Fog
+    - Frost
+    - VerticalFlip
+    - FGSM_Iter_Target_Person
+
+normalising_flow:
+  coupling_block_type: GLOW_LINEAR
+  num_coupling_blocks: 8
+mask:
+  mask_name: full_dist_64
+  min_distance: 64
+  mask_type: raw
+classifier:
+  type: HistogramBasedDistance
+  kwargs:
+    n_bins: 40
+    contamination: 0.001
+
+hydra:
+  run:
+    dir: ${paths.hydra_output}/${now:%Y-%m-%d}/${now:%H-%M-%S}
