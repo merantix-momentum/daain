@@ -9,7 +9,7 @@ import sys
 
 from setuptools import find_packages, setup
 
-SOURCE_DIR = "mxlabs_ood_detection"
+SOURCE_DIR = "daain"
 
 if sys.version_info < (3, 8):
     sys.stderr.write("ERROR:  requires at least Python Version 3.6\n")
@@ -21,7 +21,7 @@ with open("src/%s/__init__.py" % SOURCE_DIR, "rb") as f:
     init_contents = f.read().decode("utf-8")
 
     def get_var(var_name: str) -> str:
-        """Parsing of mxlabs_ood_detection project infos defined in __init__.py"""
+        """Parsing of daain project infos defined in __init__.py"""
         pattern = re.compile(r"%s\s+=\s+(.*)" % var_name)
         match = pattern.search(init_contents).group(1)
         return str(ast.literal_eval(match))

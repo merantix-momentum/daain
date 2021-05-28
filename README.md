@@ -1,6 +1,6 @@
-# Merantix-Labs: DAAIN 
+# Merantix-Labs: DAAIN
 
-This is the code for our paper DAAIN: Detection of Anomalous and AdversarialInput using Normalizing Flows
+This is the code for our paper **DAAIN: Detection of Anomalous and Adversarial Input using Normalizing Flows**.
 
 ## Assumptions
 
@@ -35,7 +35,7 @@ A selection of the files with some pointers what to find where
 ├── setup.py
 └── src
    └── mxlabs_ood_detection
-       ├── backbones                          # Definitions of the backbones, currently only a slighlty modified version 
+       ├── backbones                          # Definitions of the backbones, currently only a slighlty modified version
        │   │                                  # of the ESPNet was tested
        │   ├── esp_dropout_net
        │   │   ├── esp_dropout_net.py
@@ -74,14 +74,14 @@ A selection of the files with some pointers what to find where
        ├── model
        │   ├── aggregation_mode.py           # Not interesting for inference
        │   ├── classifiers.py                # All classifiers used are defined here
-       │   ├── model.py                      # Probably the most important module. Check this for an example on how 
-       │   │                                 # to used the detection model and how to load the parts 
+       │   ├── model.py                      # Probably the most important module. Check this for an example on how
+       │   │                                 # to used the detection model and how to load the parts
        │   │                                 # (normalising_flow & classifier)
        │   └── normalising_flow
        │       ├── coupling_blocks
        │       │   ├── attention_blocks
        │       │   ├── causal_coupling_bock.py  # WIP
-       │       │   └── subnet_constructors.py    
+       │       │   └── subnet_constructors.py
        │       └── lightning_module.py
        ├── scripts
        │   └── data_creation.py              # Use this file to create the training and testing data
@@ -97,9 +97,9 @@ A selection of the files with some pointers what to find where
 In general the model consists of two parts:
 
 - Normalising FLow
-- Classifer / Scoring method
+- Classifier / Scoring method
 
-Both have to be trained separately, depending on the classifier. Some are parameter free (except for the threshold). 
+Both have to be trained separately, depending on the classifier. Some are parameter free (except for the threshold).
 
 The general idea can be summarised:
 
@@ -110,8 +110,8 @@ The general idea can be summarised:
 ## Training & Inference Process
 
 1. Generate perturbed and adversarial images. We do not provide code for this step.
-2. Generate the activations using `src/scripts/data_creation.py`
-3. Train the detection model using `src/trainer/trainer.py`
-4. Use `src/model/model.py` to load the trained model and use it to get the anomaly score (the probability that the 
+2. Generate the activations using `src/daain/scripts/data_creation.py`
+3. Train the detection model using `src/daain/trainer/trainer.py`
+4. Use `src/daain/model/model.py` to load the trained model and use it to get the anomaly score (the probability that the
    input was anomalous).
-   
+

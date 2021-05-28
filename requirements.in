@@ -6,7 +6,7 @@ numpy
 pandas
 pyod
 scikit-learn
-scipy 
+scipy
 seaborn
 torch==1.7.1+cu110
 torchvision==0.8.2+cu110
