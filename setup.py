@@ -103,7 +103,7 @@ if __name__ == "__main__":
         description="DAAIN: Detection of Adversarial and Anomalous Inputs using Normalising flows",
         long_description=f"{readme}\n\n{history}",
         author="Merantix AG",
-        license="Proprietary",
+        license="Apache-2.0",
         package_dir={"": "src"},
         packages=find_packages(where="./src"),
         scripts=SCRIPTS,

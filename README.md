@@ -34,7 +34,7 @@ A selection of the files with some pointers what to find where
 ├── requirements.in                           # The requirements
 ├── setup.py
 └── src
-   └── mxlabs_ood_detection
+   └── daain
        ├── backbones                          # Definitions of the backbones, currently only a slighlty modified version
        │   │                                  # of the ESPNet was tested
        │   ├── esp_dropout_net
