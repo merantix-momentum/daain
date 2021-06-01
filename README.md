@@ -1,6 +1,6 @@
 # Merantix-Labs: DAAIN
 
-This is the code for our paper **DAAIN: Detection of Anomalous and Adversarial Input using Normalizing Flows**.
+This is the code for our paper **DAAIN: Detection of Anomalous and Adversarial Input using Normalizing Flows** which can be found at [arxiv](http://arxiv.org/abs/2105.14638).
 
 ## Assumptions
 
